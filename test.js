@@ -139,62 +139,6 @@ test('respects tailwind\'s important config option', () => {
   return generatePluginCss(testConfig).then(css => expect(css).toMatchCss(expectedCss))
 })
 
-test('doesn\'t add duplicated !importants', () => {
-  const testConfig = { important: true }
-  const expectedCss = `
-    .spinner {
-      position: relative !important;
-      color: transparent !important;
-      pointer-events: none !important;
-    }
-
-    .spinner::after {
-      content: '' !important;
-      position: absolute !important;
-      top: calc(50% - (1em / 2)) !important;
-      left: calc(50% - (1em / 2)) !important;
-      display: block !important;
-      width: 1em !important;
-      height: 1em !important;
-      border: 2px solid currentColor !important;
-      border-radius: 9999px !important;
-      border-right-color: transparent !important;
-      border-top-color: transparent !important;
-      animation: spinAround 500ms infinite linear !important;
-    }
-
-    @keyframes spinAround {
-      from { transform: rotate(0deg) !important; }
-      to { transform: rotate(360deg) !important; }
-    }
-
-    @media (min-width: 640px) {
-      .sm\\:spinner {
-        position: relative !important;
-        color: transparent !important;
-        pointer-events: none !important;
-      }
-
-      .sm\\:spinner::after {
-        content: '' !important;
-        position: absolute !important;
-        top: calc(50% - (1em / 2)) !important;
-        left: calc(50% - (1em / 2)) !important;
-        display: block !important;
-        width: 1em !important;
-        height: 1em !important;
-        border: 2px solid currentColor !important;
-        border-radius: 9999px !important;
-        border-right-color: transparent !important;
-        border-top-color: transparent !important;
-        animation: spinAround 500ms infinite linear !important;
-      }
-    }
-  `
-
-  return generatePluginCss(testConfig).then(css => expect(css).toMatchCss(expectedCss))
-})
-
 test('utilities can be customized', () => {
   const testConfig = {
     theme: {
